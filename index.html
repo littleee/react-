@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+    <script src="./build/react.js"></script>
+    <script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+    var HelloMessage = React.createClass({
+        handleClickLeft:function(event){
+            // 获取DOM  ReactDOM.findDOMNode函数
+            var txt = ReactDOM.findDOMNode(this.refs.txt);
+            txt.innerHTML = "hello";
+        },
+        handleClickRight:function(event){
+            var txt = ReactDOM.findDOMNode(this.refs.txt);
+            txt.innerHTML = "Bye";
+        },
+        render: function(){
+          return (
+          <div>
+              <button onClick={this.handleClickLeft}>左按钮</button>
+              <button onClick={this.handleClickRight}>右按钮</button>
+              <span ref="txt"></span>
+          </div>
+          )
+
+        }
+    });
+  /* ReactDom是React的一部分。ReactDOM是React和DOM之间的粘合剂，
+    一般用来定义单一的组件，或者结合ReactDOM.findDOMNode（）来使用。
+    更重要的是ReactDOM包已经允许开发者删除React包添加的非必要的代码，
+    并将其移动到一个更合适的存储库。 */
+      ReactDOM.render(
+       <HelloMessage />,
+       document.getElementById('example')
+      );
+
+    </script>
+  </body>
+</html>
